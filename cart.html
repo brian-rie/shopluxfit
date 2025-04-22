@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cart</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Your Cart</h1>
+  <ul id="cart-list"></ul>
+  <p id="total"></p>
+  <script>
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const list = document.getElementById('cart-list');
+    let total = 0;
+    cart.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item.product + " - $" + item.price;
+      list.appendChild(li);
+      total += item.price;
+    });
+    document.getElementById('total').textContent = "Total: $" + total;
+  </script>
+</body>
+</html>
